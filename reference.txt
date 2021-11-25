@@ -1,0 +1,9 @@
+Some of the data used in our code comes from previous groups.
+
+The list of tools, primary methods, secondary methods, descriptors, preparation, and measurements come from the following repository.
+
+https://github.com/rojaswestall/cs337/blob/master/project2/kb.json
+
+The list used for vegan transformation comes from this repository.
+
+https://github.com/amitadate/EECS-337-NLP-Project-02/blob/master/Final_Submission/transformation_list.py?fbclid=IwAR3kkLEU2g6rs-h6_ujLkpmh6vL4znWXgO-zsUU8BTeoz2ypWNQlMchiRFM
