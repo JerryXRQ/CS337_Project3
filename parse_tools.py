@@ -1881,8 +1881,8 @@ class recipe():
         self.title=self.title.replace(" | Allrecipes","")
         self.title=self.title.strip()
         self.title=self.title.lower()
-        print("\n")
-        print("Target Recipe: ",self.title)
+        #print("\n")
+        #print("Target Recipe: ",self.title)
         #new simplified ingredient parser
         self.ingredients = self.new_ingredient_processor(bs)
 
@@ -1922,7 +1922,7 @@ class recipe():
         #             self.ingredients[temp['name']] = temp
         # print(self.ingredients)
 
-        print("Ingredients Parsing Finished")
+        #print("Ingredients Parsing Finished")
         #Find Ingredients
         #self.original_cuisine()
 
