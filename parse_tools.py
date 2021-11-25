@@ -1871,6 +1871,12 @@ class recipe():
         print('\n')
         print("Recipe Name: ",self.title)
 
+    def get_title(self):
+        return self.title
+
+    def get_steps(self):
+        return self.steps
+
 
     def __init__(self,dish):
         html = requests.get(dish)
@@ -1934,5 +1940,6 @@ class recipe():
         for ele in res:
             #print(ingredients.keys())
             self.steps+=self.process_steps(ele.get_text())
+
 
 
