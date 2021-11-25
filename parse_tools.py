@@ -1877,6 +1877,9 @@ class recipe():
     def get_steps(self):
         return self.steps
 
+    def get_ingredients(self):
+        return self.ingredients
+
 
     def __init__(self,dish):
         html = requests.get(dish)

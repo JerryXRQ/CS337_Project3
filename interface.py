@@ -133,8 +133,39 @@ def handle_steps(rec):
                     print("Please enter a number in range [1, " + str(len(lib)) + "]")
                     action=input()
                 else:
-                    step=update
+                    step=update-1
                     jump=True
+        elif "how much" in action or "how many" in question:
+            kw=action.split()
+            start=0
+            end=len(kw)
+            for ele in range(len(kw)):
+                if kw[ele]=="much" or kw[ele]=="many":
+                    if ele+1< len(kw) and kw[ele+1]=="of":
+                        start=ele+2
+                    else:
+                        start=ele+1
+                elif kw[ele]=="do" or (end==len(kw) and kw[ele]=="i"):
+                    end=ele
+            target=" ".join(kw[start:end])
+            ing=rec.get_ingredients()
+            if target in ing:
+                print("You need " + str(ing[target]["quantity"])+" "+ing[target]["unit"]+" of "+ target)
+            else:
+                match=[]
+                source=set(target.split())
+                for keys in ing:
+                    for w in keys.split():
+                        if w in source and keys not in ing:
+                            match.append(keys)
+                if len(match)==1:
+                    print("You need " + str(ing[match[0]]["quantity"]) + " " + ing[match[0]]["unit"] + " of " + target)
+                else:
+                    print("which one of ",match," are you referring to?")
+
+
+        elif finish(action):
+            done=True
 
 
 
