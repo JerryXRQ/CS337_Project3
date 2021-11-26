@@ -135,7 +135,7 @@ def handle_steps(rec):
                 else:
                     step=update-1
                     jump=True
-        elif "how much" in action or "how many" in question:
+        elif "how much" in action or "how many" in action:
             kw=action.split()
             start=0
             end=len(kw)
@@ -162,6 +162,35 @@ def handle_steps(rec):
                     print("You need " + str(ing[match[0]]["quantity"]) + " " + ing[match[0]]["unit"] + " of " + target)
                 else:
                     print("which one of ",match," are you referring to?")
+                    found=False
+                    while not found:
+                        choice=input()
+                        if choice in match:
+                            print("You need " + str(ing[match[0]]["quantity"]) + " " + ing[match[0]][
+                                "unit"] + " of " + target)
+                            found=True
+                        else:
+                            print("Please enter a valid choice")
+        elif "temperature" in action:
+            if "degrees" not in lib[step]["raw"]:
+                print("Sorry, I cannot find valid temperature information")
+            else:
+                sp=lib[step]["raw"].split()
+                C=""
+                F=""
+                for i in range(len(sp)):
+                    if sp[i] == "degrees":
+                        if i<len(sp)-1 and sp[i+1]=="f":
+                            F=" ".join(sp[i-1:i+2])
+                        elif i<len(sp)-1 and sp[i+1]=="c)":
+                            C=" ".join(sp[i-1:i+2])
+                print("The temperature you need is "+F+" "+C)
+        elif "how long" in action or "when" in action:
+            if "time" in lib[step]:
+                print("It takes " +str(lib[step]["time"]["quantity"])+" "+str(lib[step]["time"]["unit"]))
+            else:
+                print("Sorry, the parser cannot find time information")
+
 
 
         elif finish(action):
