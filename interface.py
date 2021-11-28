@@ -45,7 +45,7 @@ def greet(input):
     return False
 
 def question(input):
-    question = ["can you","how can","how to","what is","walk me through", "i want"]
+    question = ["can you","how can","how to","what is","walk me through", "i want","how do i"]
     for ele in question:
         if ele in input:
             return True
@@ -63,21 +63,41 @@ def handle_steps(rec):
     lib=rec.get_steps()
     step=0
     done=False
-    while step<len(lib) and not done:
-        if step%10==0:
-            print("The " +str(step+1)+"-st step is: "+lib[step]["raw"])
-        elif step%10==1:
-            print("The " +str(step+1)+"-nd step is: "+lib[step]["raw"])
-        elif step%10==2:
-            print("The " +str(step+1)+"-rd step is: "+lib[step]["raw"])
-        else:
-            print("The " +str(step+1)+"-th step is: "+lib[step]["raw"])
+    quit=False
+    show=True
+    while step<=len(lib) and not done:
+        if step==len(lib):
+            print("You have reached the end of the recipe")
+            print("You can [1]start from the beginning [2]process a new recipe [3]quit the program")
+            ch=input()
+            poss=["1","2","3"]
+            if ch not in poss:
+                print("Please enter a valid choice")
+            elif ch=="1":
+                step=0
+                show=True
+                continue
+            elif ch=="2":
+                break
+            else:
+                quit=True
+                break
+        if show:
+            if step%10==0:
+                print("The " +str(step+1)+"-st step is: "+lib[step]["raw"])
+            elif step%10==1:
+                print("The " +str(step+1)+"-nd step is: "+lib[step]["raw"])
+            elif step%10==2:
+                print("The " +str(step+1)+"-rd step is: "+lib[step]["raw"])
+            else:
+                print("The " +str(step+1)+"-th step is: "+lib[step]["raw"])
+        show=True
 
         action=input()
         action=action.lower()
         if(question(action)):
             if "this" in action or "that" in action:
-                if "what" in action:
+                if "what" in action and "substitute" not in action:
                     if len(lib[step]["tools"])==0:
                         print("Sorry, I do not know what you are referring to.")
                     elif len(lib[step]["tools"])==1:
@@ -88,6 +108,26 @@ def handle_steps(rec):
                         choice=input()
                         query=search_google("how to "+choice)
                         print("I found the following results for you: " + query)
+
+                if "what" in action and "substitute" in action:
+                    if len(lib[step]["ingredients"])==0:
+                        print("Sorry, I do not know what you are referring to.")
+                    elif len(lib[step]["ingredients"])==1:
+                        query=rec.find_substitute(action)
+                        if query!="not found":
+                            print("I found the following result for you: "+query)
+                        else:
+                            print("Sorry, I cannot find a result.")
+                    else:
+                        print("Which one of these actions are you referring to: ", lib[step]["ingredients"])
+                        choice=input()
+                        query = rec.find_substitute(choice)
+                        if query != "not found":
+                            print("I found the following result for you: " + query)
+                        else:
+                            print("Sorry, I cannot find a result.")
+
+
                 else:
                     if len(lib[step]["methods"])==0:
                         print("Sorry, I do not know what you are referring to.")
@@ -100,23 +140,32 @@ def handle_steps(rec):
                         query=search_youtube("how to "+choice)
                         print("I found the following results for you: " + query)
             else:
-                if "what" in action:
+                if "what" in action and "substitute" not in action:
                     query = search_google(action)
                     print("I found the following results for you: " + query)
+                elif "what" in action and "substitute" in action:
+                    query = rec.find_substitute(action)
+                    if query != "not found":
+                        print("I found the following result for you: " + query)
+                    else:
+                        print("Sorry, I cannot find a result.")
                 else:
                     query = search_youtube(action)
                     print("I found the following results for you: " + query)
+
+
+
+
         elif "next" in action:
-            if step+1==len(lib):
-                print("you have reached the end of the recipe.")
-            else:
-                step+=1
+            step+=1
+
         elif "previous" in action:
             if step-1<0:
                 print("You are at the start of the recipe.")
             else:
                 step-=1
-        elif "go to" in action:
+
+        elif "go to" in action or "jump to" in action:
             jump=False
             while not jump:
                 q = action.split()
@@ -126,10 +175,10 @@ def handle_steps(rec):
                         try:
                             update=int(q[ele+1])
                         except:
-                            print("I cannot find a vlaid number. Please enter a number in range [1, "+str(len(lib))+"]")
+                            print("I cannot find a valid number. Please enter a number in range [1, "+str(len(lib))+"]")
                     elif q[ele].isdigit():
                         update=int(q[ele])
-                if update==-1 or update<1 or update>=len(lib):
+                if update==-1 or update<1 or update>len(lib):
                     print("Please enter a number in range [1, " + str(len(lib)) + "]")
                     action=input()
                 else:
@@ -171,6 +220,7 @@ def handle_steps(rec):
                             found=True
                         else:
                             print("Please enter a valid choice")
+
         elif "temperature" in action:
             if "degrees" not in lib[step]["raw"]:
                 print("Sorry, I cannot find valid temperature information")
@@ -185,17 +235,61 @@ def handle_steps(rec):
                         elif i<len(sp)-1 and sp[i+1]=="c)":
                             C=" ".join(sp[i-1:i+2])
                 print("The temperature you need is "+F+" "+C)
+
         elif "how long" in action or "when" in action:
-            if "time" in lib[step]:
+            if "time" in lib[step] and len(lib[step]["time"])>0:
                 print("It takes " +str(lib[step]["time"]["quantity"])+" "+str(lib[step]["time"]["unit"]))
             else:
                 print("Sorry, the parser cannot find time information")
 
-
+        elif "ingredients" in action:
+            rec.print_ingredients()
 
         elif finish(action):
             done=True
+            quit=True
+        elif "thank" in action:
+            print("No problem!")
+        else:
+            print("Sorry, I do not understand that, please try again")
 
+        if not done and "next" not in action and "go to" not in action:
+            print("Do you want to go to the next step?")
+            ac=input()
+            if "yes" in ac or "sure" in ac or "yep" in ac or "please" in ac or "ok" in ac:
+                show=True
+                step+=1
+            elif finish(ac):
+                show=False
+                done=True
+                quit=True
+            else:
+                show=True
+    return quit
+
+def recipe_init():
+    print("Sure, please enter a URL from AllRecipes.com")
+    valid = False
+    done = False
+    my_recipe=None
+    while not valid:
+        url = input()
+        if len(url) < 4 or "http" not in url:
+            print("Please enter a valid url")
+        elif finish(url):
+            done = True
+            break
+        else:
+            url = url[url.find('http'):]
+            print("Processing the recipe now")
+            try:
+                my_recipe = parse_tools.recipe(url)
+                print("I have processed " + my_recipe.get_title() + " for you. What can I do now")
+                print("What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps.")
+                valid = True
+            except:
+                print("Sorry, the url entered does not seem to work. Please try again.")
+    return done,my_recipe
 
 
 def main():
@@ -208,32 +302,14 @@ def main():
             print("Hello. How can I help you?")
 
         elif question(text) and my_recipe==None:
-            print("Sure, please enter a URL from AllRecipes.com")
-            valid=False
-            done=False
-            while not valid:
-                url=input()
-                if len(url)<4 or "http" not in url:
-                    print("Please enter a valid url")
-                elif finish(url):
-                    done=True
-                    break
-                else:
-                    url=url[url.find('http'):]
-                    print("Processing the recipe now")
-                    try:
-                        my_recipe=parse_tools.recipe(url)
-                        print("I have processed "+my_recipe.get_title()+" for you. What can I do now")
-                        print("What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps.")
-                        valid=True
-                    except:
-                        print("Sorry, the url entered does not seem to work. Please try again.")
+            done,my_recipe=recipe_init()
             if done:
                 break
             #Recipe Initialization
 
             choice=input()
             processed=False
+            quit=False
             while not processed:
                 if choice=="1":
                     print("The following ingredients are required by this recipe: ")
@@ -245,13 +321,51 @@ def main():
                     else:
                         processed=True
                 elif choice=="2":
-                    handle_steps(my_recipe)
+                    quit=handle_steps(my_recipe)
                     processed=True
+                elif finish(choice):
+                    quit=True
+                    processed=True
+                    break
                 else:
                     print("Please enter either 1 or 2 to proceed")
                     choice=input()
-            if processed:
+            if quit:
                 break
+
+        elif len(text)>4 and text[:4]=="http":
+            try:
+                my_recipe = parse_tools.recipe(text)
+                print("I have processed " + my_recipe.get_title() + " for you. What can I do now")
+                print("What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps.")
+            except:
+                print("Sorry, the url entered does not seem to work. Please try again.")
+            choice = input()
+            processed = False
+            quit = False
+            while not processed:
+                if choice == "1":
+                    print("The following ingredients are required by this recipe: ")
+                    my_recipe.print_ingredients()
+                    print("What else can I do?")
+                    response = input()
+                    if "step" in response or "procedure" in response:
+                        choice = "2"
+                    else:
+                        processed = True
+                elif choice == "2":
+                    quit = handle_steps(my_recipe)
+                    processed = True
+                elif finish(choice):
+                    quit = True
+                    processed = True
+                    break
+                else:
+                    print("Please enter either 1 or 2 to proceed")
+                    choice = input()
+            if quit:
+                break
+
             #Recipe handling
 
         text=input()

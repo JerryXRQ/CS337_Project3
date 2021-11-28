@@ -55,6 +55,19 @@ class recipe():
         else:
             print("We cannot find any matching secondary methods")
 
+    def find_substitute(self,raw):
+        sp=raw.split()
+        index=0
+        for ele in range(len(sp)):
+            if sp[ele]=="substitute":
+                index=ele
+        target=" ".join(sp[index+1:])
+        target=target.replace("for ","")
+        target=target.replace("with ","")
+        if target in data.Substitution_General:
+            return data.Substitution_General[target]
+        else:
+            return "not found"
 
     def process_ingredients(self,ele):
         #print(ele)
