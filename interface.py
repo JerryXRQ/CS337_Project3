@@ -15,20 +15,6 @@ def search(dish):
     return bs
 
 
-all_actions = ['verbose', "methods", 'vegetarian', 'vegan', "weight", 'meat', "kosher", 'healthy', 'unhealthy',
-               'double', 'half', 'gluten', 'chinese', "mexican", "cajun", 'indian', 'french', 'lactose', 'stir-fry',
-               'deep-fry', 'region', 'undo', 'steam', "bake"]
-def print_actions():
-    print('\n')
-    print("Available actions: ")
-    print("Result Display: [verbose, methods, region]")
-    print("Ingredients Requirements: [vegetarian, vegan, kosher, meat, gluten, lactose]")
-    print("Health Related: [healthy, unhealthy]")
-    print("Quantity Change: [double, half, weight]")
-    print("Style Change: [chinese, mexican, cajun, indian, french]")
-    print("Cooking Method Change: [stir-fry, deep-fry, steam, bake]")
-    print("Undo: [undo]")
-    print('\n')
 
 def finish(input):
     finish_words=["bye","done","that's all", "that's everything"]
@@ -38,7 +24,7 @@ def finish(input):
     return False
 
 def question(input):
-    question = ["can you","how can","how to","what is","walk me through", "i want","how do i"]
+    question = ["can you","how can","how to","what is","walk me through", "i want","how do i","how","what"]
     for ele in question:
         if ele in input:
             return True
@@ -83,11 +69,11 @@ def handle_steps(rec):
                 quit=True
                 break
         if show:
-            if step%10==0:
+            if step%10==0 and step!=10:
                 print("The " +str(step+1)+"-st step is: "+lib[step]["raw"])
-            elif step%10==1:
+            elif step%10==1 and step!=11:
                 print("The " +str(step+1)+"-nd step is: "+lib[step]["raw"])
-            elif step%10==2:
+            elif step%10==2 and step!=12:
                 print("The " +str(step+1)+"-rd step is: "+lib[step]["raw"])
             else:
                 print("The " +str(step+1)+"-th step is: "+lib[step]["raw"])
@@ -96,7 +82,7 @@ def handle_steps(rec):
         action=input()
         action=action.lower()
         if(question(action)):
-            if "this" in action or "that" in action:
+            if ("this" in action or "that" in action) and ("how many" not in action and "how much" not in action and "how long" not in action and "when" not in action and "temperature" not in action):
                 if "what" in action and "substitute" not in action:
                     if len(lib[step]["tools"])==0:
                         print("Sorry, I do not know what you are referring to.")
@@ -106,6 +92,7 @@ def handle_steps(rec):
                     else:
                         print("Which one of these actions are you referring to: ", lib[step]["tools"])
                         choice=input()
+                        choice=choice.lower()
                         query=search_google("how to "+choice)
                         print("I found the following results for you: " + query)
 
@@ -121,6 +108,7 @@ def handle_steps(rec):
                     else:
                         print("Which one of these actions are you referring to: ", lib[step]["ingredients"])
                         choice=input()
+                        choice=choice.lower()
                         query = rec.find_substitute(choice)
                         if query != "not found":
                             print("I found the following result for you: " + query)
@@ -137,8 +125,71 @@ def handle_steps(rec):
                     else:
                         print("Which one of these actions are you referring to: ", lib[step]["methods"])
                         choice=input()
+                        choice=choice.lower()
                         query=search_youtube("how to "+choice)
                         print("I found the following results for you: " + query)
+
+            elif "how much" in action or "how many" in action:
+                kw = action.split()
+                start = 0
+                end = len(kw)
+                for ele in range(len(kw)):
+                    if kw[ele] == "much" or kw[ele] == "many":
+                        if ele + 1 < len(kw) and kw[ele + 1] == "of":
+                            start = ele + 2
+                        else:
+                            start = ele + 1
+                    elif kw[ele] == "do" or (end == len(kw) and kw[ele] == "i"):
+                        end = ele
+                target = " ".join(kw[start:end])
+                ing = rec.get_ingredients()
+                if target in ing:
+                    print("You need " + str(ing[target]["quantity"]) + " " + ing[target]["unit"] + " of " + target)
+                else:
+                    match = []
+                    source = set(target.split())
+                    for keys in ing:
+                        for w in keys.split():
+                            if w in source and keys not in ing:
+                                match.append(keys)
+                    if len(match) == 1:
+                        print("You need " + str(ing[match[0]]["quantity"]) + " " + ing[match[0]][
+                            "unit"] + " of " + target)
+                    else:
+                        print("which one of ", match, " are you referring to?")
+                        found = False
+                        while not found:
+                            choice = input()
+                            choice = choice.lower()
+                            if choice in match:
+                                print("You need " + str(ing[match[0]]["quantity"]) + " " + ing[match[0]][
+                                    "unit"] + " of " + target)
+                                found = True
+                            else:
+                                print("Please enter a valid choice")
+
+            elif "temperature" in action:
+                if "degrees" not in lib[step]["raw"]:
+                    print("Sorry, I cannot find valid temperature information")
+                else:
+                    sp = lib[step]["raw"].split()
+                    C = ""
+                    F = ""
+                    for i in range(len(sp)):
+                        if sp[i] == "degrees":
+                            if i < len(sp) - 1 and sp[i + 1] == "f":
+                                F = " ".join(sp[i - 1:i + 2])
+                            elif i < len(sp) - 1 and sp[i + 1] == "c)":
+                                C = " ".join(sp[i - 1:i + 2])
+                    print("The temperature you need is " + F + " " + C)
+
+            elif "how long" in action or "when" in action:
+                if "time" in lib[step] and len(lib[step]["time"]) > 0:
+                    print("It takes " + str(lib[step]["time"]["quantity"]) + " " + str(lib[step]["time"]["unit"]))
+                else:
+                    print("Sorry, the parser cannot find time information")
+
+
             else:
                 if "what" in action and "substitute" not in action:
                     query = search_google(action)
@@ -184,63 +235,7 @@ def handle_steps(rec):
                 else:
                     step=update-1
                     jump=True
-        elif "how much" in action or "how many" in action:
-            kw=action.split()
-            start=0
-            end=len(kw)
-            for ele in range(len(kw)):
-                if kw[ele]=="much" or kw[ele]=="many":
-                    if ele+1< len(kw) and kw[ele+1]=="of":
-                        start=ele+2
-                    else:
-                        start=ele+1
-                elif kw[ele]=="do" or (end==len(kw) and kw[ele]=="i"):
-                    end=ele
-            target=" ".join(kw[start:end])
-            ing=rec.get_ingredients()
-            if target in ing:
-                print("You need " + str(ing[target]["quantity"])+" "+ing[target]["unit"]+" of "+ target)
-            else:
-                match=[]
-                source=set(target.split())
-                for keys in ing:
-                    for w in keys.split():
-                        if w in source and keys not in ing:
-                            match.append(keys)
-                if len(match)==1:
-                    print("You need " + str(ing[match[0]]["quantity"]) + " " + ing[match[0]]["unit"] + " of " + target)
-                else:
-                    print("which one of ",match," are you referring to?")
-                    found=False
-                    while not found:
-                        choice=input()
-                        if choice in match:
-                            print("You need " + str(ing[match[0]]["quantity"]) + " " + ing[match[0]][
-                                "unit"] + " of " + target)
-                            found=True
-                        else:
-                            print("Please enter a valid choice")
 
-        elif "temperature" in action:
-            if "degrees" not in lib[step]["raw"]:
-                print("Sorry, I cannot find valid temperature information")
-            else:
-                sp=lib[step]["raw"].split()
-                C=""
-                F=""
-                for i in range(len(sp)):
-                    if sp[i] == "degrees":
-                        if i<len(sp)-1 and sp[i+1]=="f":
-                            F=" ".join(sp[i-1:i+2])
-                        elif i<len(sp)-1 and sp[i+1]=="c)":
-                            C=" ".join(sp[i-1:i+2])
-                print("The temperature you need is "+F+" "+C)
-
-        elif "how long" in action or "when" in action:
-            if "time" in lib[step] and len(lib[step]["time"])>0:
-                print("It takes " +str(lib[step]["time"]["quantity"])+" "+str(lib[step]["time"]["unit"]))
-            else:
-                print("Sorry, the parser cannot find time information")
 
         elif "ingredients" in action:
             rec.print_ingredients()
@@ -256,6 +251,7 @@ def handle_steps(rec):
         if not done and "next" not in action and "go to" not in action and "previous" not in action:
             print("Do you want to go to the next step?")
             ac=input()
+            ac=ac.lower()
             if "yes" in ac or "sure" in ac or "yep" in ac or "please" in ac or "ok" in ac:
                 show=True
                 step+=1

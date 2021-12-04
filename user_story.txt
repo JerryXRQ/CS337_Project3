@@ -57,6 +57,16 @@ Bot: do you want to go to the next step?
 User: yes
 
 Bot: The 10-th step is:  mix in the chopped nuts
+User: go to step 8
+
+Bot:The 8-th step is:  while the pie is baking prepare the streusel topping: in a small bowl combine the flour brown sugar and 1 teaspoon cinnamon
+User: how much cinnamon do I need
+Bot: You need 2.0 teaspoon of cinnamon
+
+Bot: Do you want to go to the next step:
+User: yes
+
+Bot: The 9-th step is:  blend in the cold butter with a fork or pastry blender until the mixture is crumbly
 User: go to step 12
 
 Bot: The 12-nd step is:  reduce the heat to 350 degrees f (175 degrees c)
