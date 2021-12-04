@@ -37,13 +37,6 @@ def finish(input):
             return True
     return False
 
-def greet(input):
-    greetings=["hello","good morning","good afternoon","good evening","what's up","how are you","hi"]
-    for ele in greetings:
-        if ele in input:
-            return True
-    return False
-
 def question(input):
     question = ["can you","how can","how to","what is","walk me through", "i want","how do i"]
     for ele in question:
@@ -298,8 +291,7 @@ def main():
     text=input()
     text=text.lower()
     while not finish(text):
-        if greet(text):
-            print("Hello. How can I help you?")
+        print("Hello. How can I help you?")
 
         elif question(text) and my_recipe==None:
             done,my_recipe=recipe_init()
