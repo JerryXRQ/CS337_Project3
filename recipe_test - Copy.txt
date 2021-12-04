@@ -1,0 +1,79 @@
+User Story
+
+Bot: Welcome to Recipe Master
+User: Hello
+
+Bot: Hello. How can I help you?
+User: I want to walk through a recipe from allrecipes.com
+
+Bot: Sure, please enter a URL from AllRecipes.com.
+User: https://www.allrecipes.com/recipe/12504/brown-familys-favorite-pumpkin-pie/
+
+Bot: I have processed  for you. What can I do now?
+Bot: "What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps."
+User: 1
+
+Bot: Ingredients list......
+Bot: What else can I do
+User: walk through steps.
+
+Bot: The 1-st step is:  preheat the oven to 425 degrees f (220 degrees c)
+User: how can I do that
+
+Bot: Which one of these actions are you referring to:  ['heat', 'preheat']
+User: preheat
+
+Bot: I found the following results for you: https://www.youtube.com/results?search_query=how+to+preheat
+Bot: Do you want to go to the next step?
+User: no
+
+Bot: The 1-st step is:  preheat the oven to 425 degrees f (220 degrees c)
+User: what is oven
+Bot: I found the following results for you: https://www.google.com/search?q=what+is+oven
+Bot: Do you want to go to the next step
+User: yes
+
+Bot: The 2-nd step is:  in a large bowl mix together the pumpkin sweetened condensed milk and egg yolks
+User: next step
+
+Bot: The 3-rd step is:  stir in 1 teaspoon cinnamon ginger nutmeg and salt
+User: previous step.
+
+Bot: The 2-nd step is:  in a large bowl mix together the pumpkin sweetened condensed milk and egg yolks
+User: go to step 8
+
+Bot: The 8-th step is:  while the pie is baking prepare the streusel topping: in a small bowl combine the flour brown sugar and 1 teaspoon cinnamonU
+User: what is the substitute for sugar
+Bot: I found the following result for you: honey
+
+Bot: Do you want to go to the next step?
+User: yes
+
+Bot: The 9-th step is:  blend in the cold butter with a fork or pastry blender until the mixture is crumbly
+User: how to blend
+Bot: I found the following results for you: https://www.youtube.com/results?search_query=how+to+blend
+
+Bot: do you want to go to the next step?
+User: yes
+
+Bot: The 10-th step is:  mix in the chopped nuts
+User: go to step 12
+
+Bot: The 12-nd step is:  reduce the heat to 350 degrees f (175 degrees c)
+User: what temperature
+Bot: The temperature you need is 350 degrees f (175 degrees c)
+
+Bot: Do you want to go to the next step?
+User: yes
+
+Bot: The 13-rd step is:  bake an additional 40 minutes or until set
+User: how long do I have to do that
+Bot: It takes 40.0 minutes
+
+Bot: Do you want to go to the next step?
+User: yes
+
+Bot: You have reached the end of the recipe
+Bot: You can [1]start from the beginning [2]process a new recipe [3]quit the program
+User: 3
+Bot: Thank you for using Recipe Master. Have a nice day.

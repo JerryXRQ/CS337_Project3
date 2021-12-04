@@ -52,6 +52,13 @@ def search_google(question):
     query = "https://www.google.com/search?q="
     return query + question.replace(" ", "+")
 
+def greet(input):
+    greetings=["hello","good morning","good afternoon","good evening","what's up","how are you","hi"]
+    for ele in greetings:
+        if ele in input:
+            return True
+    return False
+
 def handle_steps(rec):
     lib=rec.get_steps()
     step=0
@@ -246,7 +253,7 @@ def handle_steps(rec):
         else:
             print("Sorry, I do not understand that, please try again")
 
-        if not done and "next" not in action and "go to" not in action:
+        if not done and "next" not in action and "go to" not in action and "previous" not in action:
             print("Do you want to go to the next step?")
             ac=input()
             if "yes" in ac or "sure" in ac or "yep" in ac or "please" in ac or "ok" in ac:
@@ -291,7 +298,8 @@ def main():
     text=input()
     text=text.lower()
     while not finish(text):
-        print("Hello. How can I help you?")
+        if greet(text):
+            print("Hello. How can I help you?")
 
         elif question(text) and my_recipe==None:
             done,my_recipe=recipe_init()
@@ -308,7 +316,7 @@ def main():
                     my_recipe.print_ingredients()
                     print("What else can I do?")
                     response=input()
-                    if "step" in response or "procedure" in response:
+                    if "step" in response or "procedure" in response or "2" in response:
                         choice="2"
                     else:
                         processed=True
@@ -361,6 +369,7 @@ def main():
             #Recipe handling
 
         text=input()
+        text=text.lower()
     print("Thank you for using Recipe Master. Have a nice day.")
     return
 
