@@ -24,7 +24,7 @@ def finish(input):
     return False
 
 def question(input):
-    question = ["can you","how can","how to","what is","walk me through", "i want","how do i","how","what"]
+    question = ["can you","how can","how to","what is","walk me", "i want", "i'd", "i would", "how do i","how","what", "would"]
     for ele in question:
         if ele in input:
             return True
@@ -299,36 +299,73 @@ def main():
             print("Glad to hear from you! How can I help you today?")
 
         if question(text) and my_recipe==None:
-            done,my_recipe=recipe_init()
-            if done:
-                break
-            #Recipe Initialization
-
-            choice=input()
-            processed=False
-            quit=False
-            while not processed:
-                if choice=="1":
-                    print("The following ingredients are required by this recipe: ")
-                    my_recipe.print_ingredients()
-                    print("What else can I do?")
-                    response=input()
-                    if "step" in response or "procedure" in response or "2" in response:
-                        choice="2"
-                    else:
-                        processed=True
-                elif choice=="2":
-                    quit=handle_steps(my_recipe)
-                    processed=True
-                elif finish(choice):
-                    quit=True
-                    processed=True
+            if "recipe" in text:
+                done,my_recipe=recipe_init()
+                if done:
                     break
+                #Recipe Initialization
+
+                choice=input()
+                processed=False
+                quit=False
+                while not processed:
+                    if choice=="1":
+                        print("The following ingredients are required by this recipe: ")
+                        my_recipe.print_ingredients()
+                        print("What else can I do?")
+                        response=input()
+                        if "step" in response or "procedure" in response or "2" in response:
+                            choice="2"
+                        else:
+                            processed=True
+                    elif choice=="2":
+                        quit=handle_steps(my_recipe)
+                        processed=True
+                    elif finish(choice):
+                        quit=True
+                        processed=True
+                        break
+                    else:
+                        print("Please enter either 1 or 2 to proceed")
+                        choice=input()
+                if quit:
+                    break
+            else:
+                print("Is this related to a recipe?")
+                choice = input()
+                if "y" in choice or "Y" in choice or "s" in choice or "S" in choice:
+                    done, my_recipe = recipe_init()
+                    if done:
+                        break
+                    # Recipe Initialization
+
+                    choice = input()
+                    processed = False
+                    quit = False
+                    while not processed:
+                        if choice == "1":
+                            print("The following ingredients are required by this recipe: ")
+                            my_recipe.print_ingredients()
+                            print("What else can I do?")
+                            response = input()
+                            if "step" in response or "procedure" in response or "2" in response:
+                                choice = "2"
+                            else:
+                                processed = True
+                        elif choice == "2":
+                            quit = handle_steps(my_recipe)
+                            processed = True
+                        elif finish(choice):
+                            quit = True
+                            processed = True
+                            break
+                        else:
+                            print("Please enter either 1 or 2 to proceed")
+                            choice = input()
+                    if quit:
+                        break
                 else:
-                    print("Please enter either 1 or 2 to proceed")
-                    choice=input()
-            if quit:
-                break
+                    print("I didn't get that. Please try again")
 
         elif len(text)>4 and text[:4]=="http":
             try:
