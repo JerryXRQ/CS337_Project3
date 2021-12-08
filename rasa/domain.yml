@@ -1,0 +1,98 @@
+version: "3.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - thank
+  - desire_recipe
+  - how_to
+  - what_is
+  - get_url
+  - recipe_specifics
+  - show_ingredients
+  - view_recipe_steps
+  - substitute
+  - mood_great
+  - go_to_step
+  - start_over
+  - next_step
+  - mood_unhappy
+  - bot_challenge
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_requesturl:
+  - text: "Sure. Please specify a URL."
+
+  utter_proceed_step:
+  - text: "Would you like to procede to the next step?"
+
+  utter_what_to_do_rec:
+  - text: 'What would you like to do? "Go over ingredients list" or "Go over recipe steps"?'
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+entities:
+  - procedure
+  - search_term
+  - ingredient
+  - instruction
+  - location
+  - n_step
+  - technique
+
+actions: 
+  - action_showstep
+  - action_saveurl
+  - action_startover
+  - action_setstep
+  - action_showingr
+
+slots:
+  url:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+  recipe:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  
+  step:
+    type: float
+    influence_conversation: false
+    initial_value: 0
+    mappings:
+    - type: custom
+
+  end_of_rec:
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings: 
+    - type: custom
