@@ -291,13 +291,14 @@ def recipe_init():
 def main():
     my_recipe=None
     print("Welcome to Recipe Master")
+    print("How can I help you?")
     text=input()
     text=text.lower()
     while not finish(text):
         if greet(text):
-            print("Hello. How can I help you?")
+            print("Glad to hear from you! How can I help you today?")
 
-        elif question(text) and my_recipe==None:
+        if question(text) and my_recipe==None:
             done,my_recipe=recipe_init()
             if done:
                 break
