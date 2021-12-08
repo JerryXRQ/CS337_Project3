@@ -374,33 +374,34 @@ def main():
                 print("What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps.")
             except:
                 print("Sorry, the url entered does not seem to work. Please try again.")
-            choice = input()
-            processed = False
-            quit = False
-            while not processed:
-                if choice == "1":
-                    print("The following ingredients are required by this recipe: ")
-                    my_recipe.print_ingredients()
-                    print("What else can I do?")
-                    response = input()
-                    if "step" in response or "procedure" in response:
-                        choice = "2"
-                    else:
+            else:
+                choice = input()
+                processed = False
+                quit = False
+                while not processed:
+                    if choice == "1":
+                        print("The following ingredients are required by this recipe: ")
+                        my_recipe.print_ingredients()
+                        print("What else can I do?")
+                        response = input()
+                        if "step" in response or "procedure" in response:
+                            choice = "2"
+                        else:
+                            processed = True
+                    elif choice == "2":
+                        quit = handle_steps(my_recipe)
                         processed = True
-                elif choice == "2":
-                    quit = handle_steps(my_recipe)
-                    processed = True
-                elif finish(choice):
-                    quit = True
-                    processed = True
+                    elif finish(choice):
+                        quit = True
+                        processed = True
+                        break
+                    else:
+                        print("Please enter either 1 or 2 to proceed")
+                        choice = input()
+                if quit:
                     break
-                else:
-                    print("Please enter either 1 or 2 to proceed")
-                    choice = input()
-            if quit:
-                break
 
-            #Recipe handling
+                #Recipe handling
 
         text=input()
         text=text.lower()
