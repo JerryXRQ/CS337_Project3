@@ -1,0 +1,106 @@
+version: "3.0"
+
+stories:
+
+- story: walk through recipe given
+  steps:
+  - intent: desire_recipe
+  - action: utter_requesturl
+  - action: action_listen
+  - action: action_saveurl
+  - action: utter_what_to_do_rec
+  - intent: view_recipe_steps
+  - action: action_showstep
+  # - intent: how_to
+  # - action: action_how_to
+  # - intent: thank
+  # - action: utter_proceed_step
+  # - intent: show_ingredients
+  # - action: action_show_ingredients
+  # - intent: utter_proceed_step
+
+- story: walk through recipe given1
+  steps:
+  - intent: desire_recipe
+  - action: utter_requesturl
+  - action: action_listen
+  - action: action_saveurl
+  - action: utter_what_to_do_rec
+  - intent: view_recipe_steps
+  - action: action_showstep
+  - intent: next_step
+  - action: action_showstep
+  - intent: next_step
+  - action: action_showstep
+
+- story: walk through recipe given2
+  steps:
+  - intent: desire_recipe
+  - action: utter_requesturl
+  - action: action_listen
+  - action: action_saveurl
+  - action: utter_what_to_do_rec
+  - intent: view_recipe_steps
+  - action: action_showstep
+  - intent: next_step
+  - action: action_showstep
+  - intent: next_step
+  - action: action_showstep
+  - intent: start_over
+  - action: action_startover
+  - action: action_showstep
+
+- story: walk through recipe given3
+  steps:
+  - intent: desire_recipe
+  - action: utter_requesturl
+  - action: action_listen
+  - action: action_saveurl
+  - action: utter_what_to_do_rec
+  - intent: view_recipe_steps
+  - action: action_showstep
+  - intent: next_step
+  - action: action_showstep
+  - intent: next_step
+  - action: action_showstep
+  - intent: go_to_step
+  - action: action_setstep
+  - action: action_showstep
+
+- story: walk through recipe given4
+  steps:
+  - intent: desire_recipe
+  - action: utter_requesturl
+  - action: action_listen
+  - action: action_saveurl
+  - action: utter_what_to_do_rec
+  - intent: show_ingredients
+  - action: action_showingr
+
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
+
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye

@@ -1,0 +1,35 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"goodbye\"}}]": "utter_goodbye",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"goodbye\"}}, {\"prev_action\": {\"action_name\": \"utter_goodbye\"}, \"user\": {\"intent\": \"goodbye\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"go_to_step\"}}]": "action_setstep",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"go_to_step\"}}, {\"prev_action\": {\"action_name\": \"action_setstep\"}, \"user\": {\"intent\": \"go_to_step\"}}]": "action_showstep",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"go_to_step\"}}, {\"prev_action\": {\"action_name\": \"action_setstep\"}, \"user\": {\"intent\": \"go_to_step\"}}, {\"prev_action\": {\"action_name\": \"action_showstep\"}, \"user\": {\"intent\": \"go_to_step\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"bot_challenge\"}}]": "utter_iamabot",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"bot_challenge\"}}, {\"prev_action\": {\"action_name\": \"utter_iamabot\"}, \"user\": {\"intent\": \"bot_challenge\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start_over\"}}]": "action_startover",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start_over\"}}, {\"prev_action\": {\"action_name\": \"action_startover\"}, \"user\": {\"intent\": \"start_over\"}}]": "action_showstep",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"start_over\"}}, {\"prev_action\": {\"action_name\": \"action_startover\"}, \"user\": {\"intent\": \"start_over\"}}, {\"prev_action\": {\"action_name\": \"action_showstep\"}, \"user\": {\"intent\": \"start_over\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"desire_recipe\"}}]": "utter_requesturl",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"utter_requesturl\"}, \"user\": {\"intent\": \"desire_recipe\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"utter_requesturl\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"desire_recipe\"}}]": "action_saveurl",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"utter_requesturl\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"action_saveurl\"}, \"user\": {\"intent\": \"desire_recipe\"}}]": "utter_what_to_do_rec",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"utter_requesturl\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"action_saveurl\"}, \"user\": {\"intent\": \"desire_recipe\"}}, {\"prev_action\": {\"action_name\": \"utter_what_to_do_rec\"}, \"user\": {\"intent\": \"desire_recipe\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"show_ingredients\"}}]": "action_showingr",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"show_ingredients\"}}, {\"prev_action\": {\"action_name\": \"action_showingr\"}, \"user\": {\"intent\": \"show_ingredients\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {},
+    "rules_not_in_stories": [
+      "predicting default action with intent session_start",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"bot_challenge\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"goodbye\"}}, {\"prev_action\": {\"action_name\": \"utter_goodbye\"}, \"user\": {\"intent\": \"goodbye\"}}]",
+      "predicting default action with intent back",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"goodbye\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"bot_challenge\"}}, {\"prev_action\": {\"action_name\": \"utter_iamabot\"}, \"user\": {\"intent\": \"bot_challenge\"}}]",
+      "predicting default action with intent restart"
+    ]
+  }
+}

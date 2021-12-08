@@ -1,0 +1,165 @@
+version: "3.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: thank
+  examples: |
+    - thanks
+    - thank you
+    - great
+    - ok
+
+- intent: desire_recipe
+  examples: |
+    - walk me through a recipe from AllRecipes.com
+    - walk me through a recipe from all recipes
+    - walk me through a recipe from allrecipes
+    - walk me through a recipe from all recipe
+    - walk me through a recipe from allrecipe
+    - walk me through a recipe
+
+- intent: how_to
+  examples: |    
+    - how do i [preheat the oven](procedure)
+    - how can i [preheat the oven](procedure)
+    - how to [preheat the oven](procedure)
+
+- intent: go_to_step
+  examples: | 
+    - go to step [4](n_step)
+    - step [4](n_step)
+
+- intent: what_is
+  examples: |
+    - what is [sour cream](search_term)
+    - what is a [whisk](search_term)
+
+- intent: recipe_specifics
+  examples: |
+    - how much [ingredient](ingredient)
+    - what [temperature](instruction)?
+    - how long do i [technique](technique)
+
+- intent: substitute
+  examples: |
+    - what is a substitute for [ingredient](ingredient)
+    - what can i use instead of [ingredient](ingredient)
+    - substitute [ingredient](ingredient) 
+
+- intent: show_ingredients
+  examples: |
+    - list ingredients
+    - what are the ingredients
+    - show me the ingredients
+    - go over ingredients list
+
+- intent: view_recipe_steps
+  examples: |
+    - show me the recipe
+    - go over the recipe
+    - go over recipe steps
+
+
+- intent: next_step
+  examples: |
+    - show next step
+    - next
+    - continue
+    - what comes next
+    - what do i do next
+    - what should i do next
+
+- intent: start_over
+  examples: |
+    - start over
+    - start from the begining
+    - go to the beginning
+    - restart
+    - go back to the begining
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
