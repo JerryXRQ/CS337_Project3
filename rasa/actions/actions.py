@@ -67,7 +67,7 @@ class ActionSaveURL(Action):
         dispatcher.utter_message(text=f"Got Title:  {title}")
 
         
-        return [SlotSet("recipe", rec_list), SlotSet("url", url1)] 
+        return [SlotSet("recipe", rec_list), SlotSet("url", url1), SlotSet("step", 0)] 
 
 def show_step_n(steps, n_step):
     #return steps[n_step]["raw"]
@@ -110,4 +110,25 @@ class ActionShowStepForward(Action):
             dispatcher.utter_message(text=f"You have reached the end of the recipe. Would you like to start over or go to a certain step [n]?")
         return[SlotSet("step", step_n+1)]
         #return[]
+
+class ActionHowSearch(Action):
+    def name(self):
+        return "action_howsearch"
+    def run(self, dispatcher, tracker, domain):
+        question = tracker.latest_message.get("text")
+        query="https://www.youtube.com/results?search_query="
+        Link = query+question.replace(" ","+")
+        dispatcher.utter_message(text= "YouTube Search Results: %s" % (Link))
+        return []
+
+
+class ActionWhatSearch(Action):
+    def name(self):
+        return "action_whatsearch"
+    def run(self, dispatcher, tracker, domain):
+        question = tracker.latest_message.get("text")
+        query = "https://www.google.com/search?q="
+        Link = query+question.replace(" ","+")
+        dispatcher.utter_message(text= "Google Search Results: %s" % (Link))
+        return []
 

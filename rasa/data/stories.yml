@@ -6,7 +6,7 @@ stories:
   steps:
   - intent: desire_recipe
   - action: utter_requesturl
-  - action: action_listen
+  - intent: recipe_url
   - action: action_saveurl
   - action: utter_what_to_do_rec
   - intent: view_recipe_steps
@@ -23,7 +23,7 @@ stories:
   steps:
   - intent: desire_recipe
   - action: utter_requesturl
-  - action: action_listen
+  - intent: recipe_url
   - action: action_saveurl
   - action: utter_what_to_do_rec
   - intent: view_recipe_steps
@@ -37,7 +37,7 @@ stories:
   steps:
   - intent: desire_recipe
   - action: utter_requesturl
-  - action: action_listen
+  - intent: recipe_url
   - action: action_saveurl
   - action: utter_what_to_do_rec
   - intent: view_recipe_steps
@@ -54,7 +54,7 @@ stories:
   steps:
   - intent: desire_recipe
   - action: utter_requesturl
-  - action: action_listen
+  - intent: recipe_url
   - action: action_saveurl
   - action: utter_what_to_do_rec
   - intent: view_recipe_steps
@@ -71,12 +71,29 @@ stories:
   steps:
   - intent: desire_recipe
   - action: utter_requesturl
-  - action: action_listen
+  - intent: recipe_url
   - action: action_saveurl
   - action: utter_what_to_do_rec
   - intent: show_ingredients
   - action: action_showingr
+  - intent: what_is
+  - action: action_whatsearch
 
+- story: walk through recipe given5
+  steps:
+  - intent: desire_recipe
+  - action: utter_requesturl
+  - intent: recipe_url
+  - action: action_saveurl
+  - action: utter_what_to_do_rec
+  - intent: view_recipe_steps
+  - action: action_showstep
+  - intent: next_step
+  - action: action_showstep
+  - intent: next_step
+  - action: action_showstep
+  - intent: how_to
+  - action: action_howsearch
 
 - story: happy path
   steps:

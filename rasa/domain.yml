@@ -20,6 +20,8 @@ intents:
   - next_step
   - mood_unhappy
   - bot_challenge
+  - recipe_url
+
 
 responses:
   utter_greet:
@@ -68,6 +70,8 @@ actions:
   - action_saveurl
   - action_startover
   - action_setstep
+  - action_howsearch
+  - action_whatsearch
   - action_showingr
 
 slots:

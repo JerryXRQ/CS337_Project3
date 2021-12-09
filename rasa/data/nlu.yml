@@ -45,11 +45,20 @@ nlu:
     - walk me through a recipe from allrecipe
     - walk me through a recipe
 
+- intent: recipe_url
+  examples: |
+    - https://www.allrecipes.com/recipe/218091/classic-and-simple-meat-lasagna/
+    - https://www.allrecipes.com/recipe/245272/chef-johns-roasted-butternut-squash-soup/
+    - https://www.allrecipes.com/recipe/6815/monkey-bread-i/
+    - https://www.allrecipes.com/recipe/16354/easy-meatloaf/
+    - https://www.allrecipes.com/recipe/11679/homemade-mac-and-cheese/
+    - https://www.allrecipes.com/recipe/20144/banana-banana-bread/
+
 - intent: how_to
   examples: |    
     - how do i [preheat the oven](procedure)
-    - how can i [preheat the oven](procedure)
-    - how to [preheat the oven](procedure)
+    - how can i [fillet a fish](procedure)
+    - how to [flip a pancake](procedure)
 
 - intent: go_to_step
   examples: | 
@@ -82,6 +91,8 @@ nlu:
 
 - intent: view_recipe_steps
   examples: |
+    - show steps
+    - show me the steps
     - show me the recipe
     - go over the recipe
     - go over recipe steps

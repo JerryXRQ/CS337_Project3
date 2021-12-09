@@ -2,11 +2,14 @@ version: "3.0"
 
 rules:
 
-- rule: ingest a recipe
+- rule: request a recipe
   steps:
   - intent: desire_recipe
   - action: utter_requesturl
-  - action: action_listen
+
+- rule: ingest a recipe
+  steps:
+  - intent: recipe_url
   - action: action_saveurl
   - action: utter_what_to_do_rec
 
@@ -15,6 +18,11 @@ rules:
     - intent: start_over
     - action: action_startover
     - action: action_showstep
+
+- rule: show recipe
+  steps:
+  - intent: view_recipe_steps
+  - action: action_showstep
 
 - rule: set step
   steps:
@@ -26,6 +34,16 @@ rules:
   steps:
     - intent: show_ingredients
     - action: action_showingr
+
+- rule: youtube search
+  steps:
+  - intent: how_to
+  - action: action_howsearch
+
+- rule: google search
+  steps:
+  - intent: what_is
+  - action: action_whatsearch
 
 - rule: Say goodbye anytime the user says goodbye
   steps:
