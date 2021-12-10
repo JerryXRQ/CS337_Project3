@@ -4,6 +4,7 @@ import requests
 import parse_tools
 import copy
 import re
+import data
 
 
 def search(dish):
@@ -83,20 +84,20 @@ def handle_steps(rec):
         action=action.lower()
         if(question(action)):
             if ("this" in action or "that" in action) and ("how many" not in action and "how much" not in action and "how long" not in action and "when" not in action and "temperature" not in action):
-                if "what" in action and "substitute" not in action:
+                if "what" in action and "substitute" not in action and "replace" not in action:
                     if len(lib[step]["tools"])==0:
                         print("Sorry, I do not know what you are referring to.")
                     elif len(lib[step]["tools"])==1:
                         query=search_google("what is "+lib[step]["tools"][0])
                         print("I found the following results for you: "+query)
                     else:
-                        print("Which one of these actions are you referring to: ", lib[step]["tools"])
+                        print("Which one of these tools are you referring to: ", lib[step]["tools"])
                         choice=input()
                         choice=choice.lower()
-                        query=search_google("how to "+choice)
+                        query=search_google("what is "+choice)
                         print("I found the following results for you: " + query)
 
-                if "what" in action and "substitute" in action:
+                elif "substitute" in action or "replace" in action:
                     if len(lib[step]["ingredients"])==0:
                         print("Sorry, I do not know what you are referring to.")
                     elif len(lib[step]["ingredients"])==1:
@@ -106,14 +107,17 @@ def handle_steps(rec):
                         else:
                             print("Sorry, I cannot find a result.")
                     else:
-                        print("Which one of these actions are you referring to: ", lib[step]["ingredients"])
+                        print("Which one of these ingredients are you referring to: ", lib[step]["ingredients"])
                         choice=input()
                         choice=choice.lower()
-                        query = rec.find_substitute(choice)
-                        if query != "not found":
-                            print("I found the following result for you: " + query)
+                        if choice in data.Substitution_General:
+                            print("I found the following result for you: " + data.Substitution_General[choice])
                         else:
-                            print("Sorry, I cannot find a result.")
+                            query = rec.find_substitute(choice)
+                            if query != "not found":
+                                print("I found the following result for you: " + query)
+                            else:
+                                print("Sorry, I cannot find a result.")
 
 
                 else:
@@ -155,6 +159,8 @@ def handle_steps(rec):
                     if len(match) == 1:
                         print("You need " + str(ing[match[0]]["quantity"]) + " " + ing[match[0]][
                             "unit"] + " of " + target)
+                    elif len(match)==0:
+                        print("Sorry, we cannot find a match.")
                     else:
                         print("which one of ", match, " are you referring to?")
                         found = False
@@ -191,10 +197,10 @@ def handle_steps(rec):
 
 
             else:
-                if "what" in action and "substitute" not in action:
+                if "what" in action and "substitute" not in action and "replace" not in action:
                     query = search_google(action)
                     print("I found the following results for you: " + query)
-                elif "what" in action and "substitute" in action:
+                elif "substitute" in action or "replace" in action:
                     query = rec.find_substitute(action)
                     if query != "not found":
                         print("I found the following result for you: " + query)
@@ -248,7 +254,7 @@ def handle_steps(rec):
         else:
             print("Sorry, I do not understand that, please try again")
 
-        if not done and "next" not in action and "go to" not in action and "previous" not in action:
+        if not done and "next" not in action and "go to" not in action and "jump to" not in action and "previous" not in action:
             print("Do you want to go to the next step?")
             ac=input()
             ac=ac.lower()

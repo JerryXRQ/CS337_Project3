@@ -1,9 +1,10 @@
 User Story
 
 Bot: Welcome to Recipe Master
+Bot: How can I help you?
 User: Hello
 
-Bot: Hello. How can I help you?
+Bot: Glad to hear from you! How can I help you today?
 User: I want to walk through a recipe from allrecipes.com
 
 Bot: Sure, please enter a URL from AllRecipes.com.
@@ -57,26 +58,26 @@ Bot: do you want to go to the next step?
 User: yes
 
 Bot: The 10-th step is:  mix in the chopped nuts
-User: go to step 8
+User: go to step 4
 
-Bot:The 8-th step is:  while the pie is baking prepare the streusel topping: in a small bowl combine the flour brown sugar and 1 teaspoon cinnamon
-User: how much cinnamon do I need
-Bot: You need 2.0 teaspoon of cinnamon
+Bot: The 4-th step is:  in a large glass or metal bowl whip egg whites until soft peaks form
+how much egg whites do I need
+Bot: You need 2.0 unit of egg whites
 
 Bot: Do you want to go to the next step:
 User: yes
 
-Bot: The 9-th step is:  blend in the cold butter with a fork or pastry blender until the mixture is crumbly
+Bot: The 5-th step is:  gently fold into pumpkin mixture
 User: go to step 12
 
-Bot: The 12-nd step is:  reduce the heat to 350 degrees f (175 degrees c)
+Bot: The 12-th step is:  reduce the heat to 350 degrees f (175 degrees c)
 User: what temperature
 Bot: The temperature you need is 350 degrees f (175 degrees c)
 
 Bot: Do you want to go to the next step?
 User: yes
 
-Bot: The 13-rd step is:  bake an additional 40 minutes or until set
+Bot: The 13-th step is:  bake an additional 40 minutes or until set
 User: how long do I have to do that
 Bot: It takes 40.0 minutes
 
@@ -85,5 +86,32 @@ User: yes
 
 Bot: You have reached the end of the recipe
 Bot: You can [1]start from the beginning [2]process a new recipe [3]quit the program
-User: 3
+User: 1
+
+Bot: The 1-st step is:  preheat the oven to 425 degrees f (220 degrees c)
+User: Go to step 8
+
+Bot: The 8-th step is:  while the pie is baking prepare the streusel topping: in a small bowl combine the flour brown sugar and 1 teaspoon cinnamon
+User: How can I replace that
+
+Bot: Which one of these ingredients are you referring to:  ['cinnamon', 'pie', 'flour', 'brown sugar']
+User: cinnamon
+
+Bot: I found the following result for you: sugar.
+Bot: Do you want to go to the next step?
+User: yes
+
+Bot: The 9-th step is:  blend in the cold butter with a fork or pastry blender until the mixture is crumbly
+User: what is that
+
+Bot: Which one of these tools are you referring to:  ['blender', 'pastry blender']
+User: blender
+Bot: I found the following results for you: https://www.google.com/search?q=what+is+blender
+
+Bot: Do you want to go to the next step?
+User: yes
+
+Bot: The 10-th step is:  mix in the chopped nuts
+User: Bye.
+
 Bot: Thank you for using Recipe Master. Have a nice day.

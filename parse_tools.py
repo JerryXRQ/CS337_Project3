@@ -59,7 +59,7 @@ class recipe():
         sp=raw.split()
         index=0
         for ele in range(len(sp)):
-            if sp[ele]=="substitute":
+            if sp[ele]=="substitute" or sp[ele]=="replace" or sp[ele]=="replacement":
                 index=ele
         target=" ".join(sp[index+1:])
         target=target.replace("for ","")
