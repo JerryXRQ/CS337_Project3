@@ -321,7 +321,7 @@ def main():
         elif substitute(text):
             print("You are asking for available substitutions right? y/n")
             choice = input()
-            if 'y' in choice:
+            if 'y' in choice or 'Y' in choice:
                 print("Do you want to [1] browse available terms or [2] check out specific substitutions?")
                 choice = input()
                 if '1' in choice or "one" in choice:
@@ -350,6 +350,7 @@ def main():
                     else:
                         print("Sure, Here's all available style substitutions we have in file:")
                         print(style.Style())
+                print("This is the end of substitution.")
 
             else:
                 if question(text) and my_recipe == None:

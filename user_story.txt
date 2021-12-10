@@ -10,7 +10,7 @@ User: I want to walk through a recipe from allrecipes.com
 Bot: Sure, please enter a URL from AllRecipes.com.
 User: https://www.allrecipes.com/recipe/12504/brown-familys-favorite-pumpkin-pie/
 
-Bot: I have processed  for you. What can I do now?
+Bot: I have processed for you. What can I do now?
 Bot: "What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps."
 User: 1
 
@@ -86,7 +86,30 @@ User: yes
 
 Bot: You have reached the end of the recipe
 Bot: You can [1]start from the beginning [2]process a new recipe [3]quit the program
+User: 2
+
+User: Can I see all available substitutions?
+Bot: You are asking for available substitutions right? y/n
+User: yes
+
+Bot: Do you want to [1] browse available terms or [2] check out specific substitutions?
+User: 2
+
+Bot: OK, what substitution do you want to learn more about? [1] Health Related, [2] Quantity Change, or [3] Style Change
+User: 3
+
+Bot: Sure, Here's all available style substitutions we have in file:
+Bot: ...
+Bot: This is the end of substitution.
+
+User: https://www.allrecipes.com/recipe/12504/brown-familys-favorite-pumpkin-pie/
+Bot: I have processed for you. What can I do now?
+Bot: "What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps."
 User: 1
+
+Bot: Ingredients list......
+Bot: What else can I do
+User: walk through steps.
 
 Bot: The 1-st step is:  preheat the oven to 425 degrees f (220 degrees c)
 User: Go to step 8

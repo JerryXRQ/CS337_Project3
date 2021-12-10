@@ -15,7 +15,8 @@ We got Rasa to work on the user story on Canvas using our recipe functions. A de
 Slack Chatbot:
 We deployed our code using the slack platform. The user can join our slack channel and ask the bot questions.
 
-
+Substitution:
+We add the feature to look up available substitutions as well as browse build-in terms and descriptors.
 
 # Work Distribution
 
@@ -28,6 +29,7 @@ Connected the deployment to Slack and recorded the demo
 ### Daniel Wang:
 Created the flow chart
 Improved the interface
+Completed the substitution extra task
 
 ### Jonathan Katz:
 Got Rasa to work with our functions.
