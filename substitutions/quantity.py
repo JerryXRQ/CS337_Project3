@@ -1,8 +1,15 @@
 class Quantity():
 
     def __init__(self):
-        self.attrs = []
-        pass
+        self.attrs = ['vol_to_grams']
+        self.vol_to_grams = {
+      "tablespoon":14,
+      "teaspoon":4,
+      "teaspoons":4,
+      "tablespoons":14,
+      "cup":115,
+      "cups":115
+}
 
     def __str__(self):
         result = ''
