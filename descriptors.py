@@ -1,4 +1,4 @@
-class descriptors():
+class Descriptors():
 
     def __init__(self):
         self.attrs = ['preparation', 'food', 'style', 'seasoning', 'other']

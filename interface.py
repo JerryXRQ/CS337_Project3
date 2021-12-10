@@ -6,6 +6,7 @@ import copy
 import re
 import data
 import measurements
+import descriptors
 
 
 def search(dish):
@@ -331,7 +332,8 @@ def main():
                         print("Sure, Here's all available measurements we have in file:")
                         print(measurements.Measurements())
                     elif '2' in choice or 'two' in choice:
-                        pass
+                        print("Sure, Here's all available descriptors we have in file:")
+                        print(descriptors.Descriptors())
                     else:
                         pass
                 else:
