@@ -473,5 +473,5 @@ class Descriptors():
     def __str__(self):
         result = ''
         for x in self.attrs:
-            result += f'{x}: {getattr(self, x)};'
+            result += f'{x}: {getattr(self, x)}; \n'
         return result
