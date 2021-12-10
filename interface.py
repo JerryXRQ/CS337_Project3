@@ -54,7 +54,7 @@ def greet(input):
 def substitute(test):
     words = ["sub", "substitute", "substitution", "replace", "replacement", "change", "alter", "alternation"]
     for ele in words:
-        if ele in input:
+        if ele in test:
             return True
     return False
 
