@@ -5,7 +5,7 @@ import parse_tools
 import copy
 import re
 import data
-from substitutions import methods, measurements, descriptors, tools
+from substitutions import methods, measurements, descriptors, tools, quantity, cook, style, health
 
 
 def search(dish):
@@ -342,13 +342,17 @@ def main():
                     print("OK, what substitution do you want to learn more about? [1] Health Related, [2] Quantity Change, [3] Style Change or [4] Cooking Method Change")
                     choice = input()
                     if '1' in choice or 'one' in choice:
-                        pass
+                        print("Sure, Here's all available health related substitutions we have in file:")
+                        print(health.Health())
                     elif '2' in choice or 'two' in choice:
-                        pass
+                        print("Sure, Here's all available quantity substitutions we have in file:")
+                        print(quantity.Quantity())
                     elif '3' in choice or 'three' in choice:
-                        pass
+                        print("Sure, Here's all available style substitutions we have in file:")
+                        print(style.Style())
                     else:
-                        pass
+                        print("Sure, Here's all available cooking method substitutions we have in file:")
+                        print(cook.Cook())
             else:
                 if question(text) and my_recipe == None:
                     if "recipe" in text:
