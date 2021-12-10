@@ -19,7 +19,7 @@ We got Rasa to work on the user story on Canvas using our recipe functions. A de
 
 ### Jerry Xu:
 Designed the interface and finished the required tasks
-Wrote the user story
+Wrote the user story and question format file
 
 ### Daniel Wang:
 Created the flow chart
