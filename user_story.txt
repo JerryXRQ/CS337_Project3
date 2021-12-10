@@ -58,7 +58,7 @@ Bot: do you want to go to the next step?
 User: yes
 
 Bot: The 10-th step is:  mix in the chopped nuts
-User: go to step 4
+User: jump to step 4
 
 Bot: The 4-th step is:  in a large glass or metal bowl whip egg whites until soft peaks form
 how much egg whites do I need
