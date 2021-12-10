@@ -7,5 +7,9 @@ class Health():
     def __str__(self):
         result = ''
         for x in self.attrs:
-            result += f'{x}: {getattr(self, x)}; \n'
+            dic = getattr(self, x)
+            result += f'{x}: '
+            for key, value in dic.items():
+                result += 'key -> value, '
+            result += f'; '
         return result
