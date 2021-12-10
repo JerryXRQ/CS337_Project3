@@ -6,14 +6,25 @@ import parse_tools
 import data
 
 # instantiate Slack client
-slack_client = SlackClient('xoxb-2823481575429-2826512738354-EXeZAEn0U2OrlNihPQXoVss9')
-# starterbot's user ID in Slack: value is assigned after the bot starts up
+slack_client = SlackClient("This is a placeholder for the actual code. Uploading it to GitHub will cause deactivation of the app")
 starterbot_id = "U02QAF2MQAE"
 
 # constants
 RTM_READ_DELAY = 1 # 1 second delay between reading from RTM
 EXAMPLE_COMMAND = "do"
 MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
+
+def send_ingredients(rec):
+    send("List of Ingredients: ")
+    ing=rec.get_ingredients()
+    for ele in ing.keys():
+        send("Name: "+ ele)
+        send("Quantity: "+str(ing[ele]["quantity"]))
+        send("Unit: "+ str(ing[ele]["unit"]))
+        send("Preparation: " + str(ing[ele]["prep"]))
+        send("Descriptions: " + str(ing[ele]["descriptions"]))
+        send("Additional Instruction: "+str(ing[ele]["additional"]))
+    return
 
 
 def finish(input):
@@ -131,7 +142,7 @@ def handle_command(command, channel):
                 while not processed:
                     if choice == "1":
                         send("The following ingredients are required by this recipe: ")
-                        my_recipe.print_ingredients()
+                        send_ingredients(my_recipe)
                         send("What else can I do?")
                         response = get_input()
                         if "step" in response or "procedure" in response or "2" in response:
@@ -165,7 +176,7 @@ def handle_command(command, channel):
                     while not processed:
                         if choice == "1":
                             send("The following ingredients are required by this recipe: ")
-                            my_recipe.print_ingredients()
+                            send_ingredients(my_recipe)
                             send("What else can I do?")
                             response = get_input()
                             if "step" in response or "procedure" in response or "2" in response:
@@ -201,7 +212,7 @@ def handle_command(command, channel):
                 while not processed:
                     if choice == "1":
                         send("The following ingredients are required by this recipe: ")
-                        my_recipe.print_ingredients()
+                        send_ingredients(my_recipe)
                         send("What else can I do?")
                         response = get_input()
                         if "step" in response or "procedure" in response:
@@ -433,7 +444,7 @@ def handle_steps(rec):
 
 
         elif "ingredient" in action:
-            rec.print_ingredients()
+            send_ingredients(rec)
 
         elif finish(action):
             done=True

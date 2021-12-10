@@ -39,3 +39,7 @@ Recorded the Rasa demo on sample user story on Canvas.
 Rasa: https://youtu.be/6yV8GF1JN_Q
 
 Slack: https://youtu.be/Enmb9fn3DkU
+
+# Notes
+
+Because Slack will revoke our access to the bot if we post the authorization code on Git, we will not include it in our submission. Please contact us if there are any questions regarding it.
