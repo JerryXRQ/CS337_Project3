@@ -1,4 +1,4 @@
-# conversational-interface-project-master
+# Conversational-Interface-Project-master
 Project 3 Conservational Interface
 Group 2
 Members: Jerry Xu, Daniel Wang, Jonathan Katz
