@@ -33,7 +33,7 @@ Time Question: Anything containing "how long" or "when"
 Example: How long does that take
 
 7. Ingredient substitution questions
-Anything containing "substitute" or "replace".
-Example: "how can I replace cinnamon".
+Anything containing "substitute", "replace" or "alter".
+Example: "What are available substitutions".
 
 The information provided in this section is only for reference. If there are discrepancies between the code's behaviors and the descriptions provided here, please look for better input samples in the user story.
