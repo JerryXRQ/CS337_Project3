@@ -11,5 +11,5 @@ class Cook():
             result += f'{x}: '
             for key, value in dic.items():
                 result += 'key -> value, '
-            result += f'; '
+            result += f'; \n'
         return result
