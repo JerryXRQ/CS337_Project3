@@ -5,6 +5,7 @@ import parse_tools
 import copy
 import re
 import data
+import measurements
 
 
 def search(dish):
@@ -327,7 +328,8 @@ def main():
                     print("OK, what component do you want to browse? [1] Measurements, [2] Descriptors, or [3] Tools and Methods")
                     choice = input()
                     if '1' in choice or 'one' in choice:
-                        pass
+                        print("Sure, Here's all available measurements we have in file:")
+                        print(measurements.Measurements())
                     elif '2' in choice or 'two' in choice:
                         pass
                     else:
