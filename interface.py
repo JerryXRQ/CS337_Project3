@@ -5,8 +5,7 @@ import parse_tools
 import copy
 import re
 import data
-import measurements
-import descriptors
+from substitutions import methods, measurements, descriptors, tools
 
 
 def search(dish):
@@ -335,7 +334,10 @@ def main():
                         print("Sure, Here's all available descriptors we have in file:")
                         print(descriptors.Descriptors())
                     else:
-                        pass
+                        print("Sure, Here's all available tools we have in file:")
+                        print(tools.Tools())
+                        print("Sure, Here's all available methods we have in file:")
+                        print(methods.Methods())
                 else:
                     print("OK, what substitution do you want to learn more about? [1] Health Related, [2] Quantity Change, [3] Style Change or [4] Cooking Method Change")
                     choice = input()
