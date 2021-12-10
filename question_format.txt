@@ -1,0 +1,39 @@
+Question Format:
+
+1. Recipe retrieval and display
+Anything containing the keyword "ingredient" that are not question.
+Example: Show me the ingredients.
+
+2. Navigation Utterances:
+Go back 1 step: Anything containing "previous" or "go back"
+Move forward 1 step: Anything containing "next"
+Jump: Anything containing "go to" or "jump to"
+
+3. Vagus "how to" questions
+Anything containing "how" and "this" or "that". The query also cannot be a parameter or substitution question.
+Example: How to do that
+
+4. Specific "how to" questions
+Anything containing "how" without "this" or "that". The query also cannot be a parameter or substitution question.
+If there are multiple matches, the bot might ask the user for a choice
+
+5. Simple "what is" questions
+Anything containing "what". The query also cannot be a parameter or substitution question.
+If the question is vague and there are multiple matches, the bot might ask the user for a choice.
+Example: "What is that", "what is a blender"
+
+6. Parameter Question:
+Quantity Question: Anything containing "how much" or "how many". The user might be asked to choose if there are multiple matches.
+Example: "how much cinnamon do I need"
+
+Temperature Question: Anything containing "temperature".
+Example: What temperature do I need
+
+Time Question: Anything containing "how long" or "when"
+Example: How long does that take
+
+7. Ingredient substitution questions
+Anything containing "substitute" or "replace".
+Example: "how can I replace cinnamon".
+
+The information provided in this section is only for reference. If there are discrepancies between the code's behaviors and the descriptions provided here, please look for better input samples in the user story.

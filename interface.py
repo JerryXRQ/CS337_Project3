@@ -82,7 +82,7 @@ def handle_steps(rec):
 
         action=input()
         action=action.lower()
-        if(question(action)):
+        if(question(action) and "ingredient" not in action):
             if ("this" in action or "that" in action) and ("how many" not in action and "how much" not in action and "how long" not in action and "when" not in action and "temperature" not in action):
                 if "what" in action and "substitute" not in action and "replace" not in action:
                     if len(lib[step]["tools"])==0:
@@ -216,7 +216,7 @@ def handle_steps(rec):
         elif "next" in action:
             step+=1
 
-        elif "previous" in action:
+        elif "previous" in action or "go back" in action:
             if step-1<0:
                 print("You are at the start of the recipe.")
             else:
@@ -243,7 +243,7 @@ def handle_steps(rec):
                     jump=True
 
 
-        elif "ingredients" in action:
+        elif "ingredient" in action:
             rec.print_ingredients()
 
         elif finish(action):
