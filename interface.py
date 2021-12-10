@@ -16,13 +16,13 @@ def search(dish):
     return bs
 
 
-
 def finish(input):
     finish_words=["bye","done","that's all", "that's everything"]
     for ele in finish_words:
         if ele in input:
             return True
     return False
+
 
 def question(input):
     question = ["can you","how can","how to","what is","walk me", "i want", "i'd", "i would", "how do i","how","what", "would"]
@@ -31,13 +31,16 @@ def question(input):
             return True
     return False
 
+
 def search_youtube(question):
     query="https://www.youtube.com/results?search_query="
     return query+question.replace(" ","+")
 
+
 def search_google(question):
     query = "https://www.google.com/search?q="
     return query + question.replace(" ", "+")
+
 
 def greet(input):
     greetings=["hello","good morning","good afternoon","good evening","what's up","how are you","hi"]
@@ -45,6 +48,15 @@ def greet(input):
         if ele in input:
             return True
     return False
+
+
+def substitute(test):
+    words = ["sub", "substitute", "substitution", "replace", "replacement", "change", "alter", "alternation"]
+    for ele in words:
+        if ele in input:
+            return True
+    return False
+
 
 def handle_steps(rec):
     lib=rec.get_steps()
@@ -269,6 +281,7 @@ def handle_steps(rec):
                 show=True
     return quit
 
+
 def recipe_init():
     print("Sure, please enter a URL from AllRecipes.com")
     valid = False
@@ -304,7 +317,138 @@ def main():
         if greet(text):
             print("Glad to hear from you! How can I help you today?")
 
-        if question(text) and my_recipe==None:
+        elif substitute(text):
+            print("You are asking for available substitutions right? y/n")
+            choice = input()
+            if 'y' in choice:
+                print("Do you want to [1] browse available terms or [2] check out specific substitutions?")
+                choice = input()
+                if '1' in choice or "one" in choice:
+                    print("OK, what component do you want to browse? [1] Measurements, [2] Descriptors, or [3] Tools and Methods")
+                    choice = input()
+                    if '1' in choice or 'one' in choice:
+                        pass
+                    elif '2' in choice or 'two' in choice:
+                        pass
+                    else:
+                        pass
+                else:
+                    print("OK, what substitution do you want to learn more about? [1] Health Related, [2] Quantity Change, [3] Style Change or [4] Cooking Method Change")
+                    choice = input()
+                    if '1' in choice or 'one' in choice:
+                        pass
+                    elif '2' in choice or 'two' in choice:
+                        pass
+                    elif '3' in choice or 'three' in choice:
+                        pass
+                    else:
+                        pass
+            else:
+                if question(text) and my_recipe == None:
+                    if "recipe" in text:
+                        done, my_recipe = recipe_init()
+                        if done:
+                            break
+                        # Recipe Initialization
+
+                        choice = input()
+                        processed = False
+                        quit = False
+                        while not processed:
+                            if choice == "1":
+                                print("The following ingredients are required by this recipe: ")
+                                my_recipe.print_ingredients()
+                                print("What else can I do?")
+                                response = input()
+                                if "step" in response or "procedure" in response or "2" in response:
+                                    choice = "2"
+                                else:
+                                    processed = True
+                            elif choice == "2":
+                                quit = handle_steps(my_recipe)
+                                processed = True
+                            elif finish(choice):
+                                quit = True
+                                processed = True
+                                break
+                            else:
+                                print("Please enter either 1 or 2 to proceed")
+                                choice = input()
+                        if quit:
+                            break
+                    else:
+                        print("Is this related to a recipe?")
+                        choice = input()
+                        if "y" in choice or "Y" in choice or "s" in choice or "S" in choice:
+                            done, my_recipe = recipe_init()
+                            if done:
+                                break
+                            # Recipe Initialization
+
+                            choice = input()
+                            processed = False
+                            quit = False
+                            while not processed:
+                                if choice == "1":
+                                    print("The following ingredients are required by this recipe: ")
+                                    my_recipe.print_ingredients()
+                                    print("What else can I do?")
+                                    response = input()
+                                    if "step" in response or "procedure" in response or "2" in response:
+                                        choice = "2"
+                                    else:
+                                        processed = True
+                                elif choice == "2":
+                                    quit = handle_steps(my_recipe)
+                                    processed = True
+                                elif finish(choice):
+                                    quit = True
+                                    processed = True
+                                    break
+                                else:
+                                    print("Please enter either 1 or 2 to proceed")
+                                    choice = input()
+                            if quit:
+                                break
+                        else:
+                            print("I didn't get that. Please try again")
+
+                elif len(text) > 4 and text[:4] == "http":
+                    try:
+                        my_recipe = parse_tools.recipe(text)
+                        print("I have processed " + my_recipe.get_title() + " for you. What can I do now")
+                        print(
+                            "What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps.")
+                    except:
+                        print("Sorry, the url entered does not seem to work. Please try again.")
+                    else:
+                        choice = input()
+                        processed = False
+                        quit = False
+                        while not processed:
+                            if choice == "1":
+                                print("The following ingredients are required by this recipe: ")
+                                my_recipe.print_ingredients()
+                                print("What else can I do?")
+                                response = input()
+                                if "step" in response or "procedure" in response:
+                                    choice = "2"
+                                else:
+                                    processed = True
+                            elif choice == "2":
+                                quit = handle_steps(my_recipe)
+                                processed = True
+                            elif finish(choice):
+                                quit = True
+                                processed = True
+                                break
+                            else:
+                                print("Please enter either 1 or 2 to proceed")
+                                choice = input()
+                        if quit:
+                            break
+
+        elif question(text) and my_recipe==None:
             if "recipe" in text:
                 done,my_recipe=recipe_init()
                 if done:
