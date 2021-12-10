@@ -36,5 +36,6 @@ Recorded the Rasa demo on sample user story on Canvas.
 
 # Demo videos
 
-Rase: https://youtu.be/6yV8GF1JN_Q
+Rasa: https://youtu.be/6yV8GF1JN_Q
+
 Slack: https://youtu.be/Enmb9fn3DkU
