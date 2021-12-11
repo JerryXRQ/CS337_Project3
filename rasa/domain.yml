@@ -9,8 +9,6 @@ intents:
   - desire_recipe
   - how_to
   - what_is
-  - get_url
-  - recipe_specifics
   - show_ingredients
   - view_recipe_steps
   - substitute
@@ -63,7 +61,7 @@ entities:
   - instruction
   - location
   - n_step
-  - technique
+
 
 actions: 
   - action_showstep
