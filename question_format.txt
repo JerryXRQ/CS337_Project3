@@ -29,7 +29,7 @@ Example: "how much cinnamon do I need"
 Temperature Question: Anything containing "temperature".
 Example: What temperature do I need
 
-Time Question: Anything containing "how long" or "when"
+Time Question: Anything containing "how long"
 Example: How long does that take
 
 7. Ingredient substitution questions
