@@ -267,7 +267,7 @@ def handle_steps(rec):
         else:
             print("Sorry, I do not understand that, please try again")
 
-        if not done and "next" not in action and "go to" not in action and "jump to" not in action and "previous" not in action:
+        if not done and "next" not in action and "go to" not in action and "jump to" not in action and "previous" not in action and "go back" not in action:
             print("Do you want to go to the next step?")
             ac=input()
             ac=ac.lower()

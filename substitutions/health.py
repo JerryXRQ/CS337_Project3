@@ -136,6 +136,7 @@ class Health():
             dic = getattr(self, x)
             result += f'{x}: '
             for key, value in dic.items():
-                result += 'key -> value, '
+                result +=key +' -> '+value+', '
+            result = result[:len(result) - 2]
             result += f'; \n'
         return result
