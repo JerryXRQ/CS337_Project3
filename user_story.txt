@@ -43,7 +43,7 @@ User: previous step.
 Bot: The 2-nd step is:  in a large bowl mix together the pumpkin sweetened condensed milk and egg yolks
 User: go to step 8
 
-Bot: The 8-th step is:  while the pie is baking prepare the streusel topping: in a small bowl combine the flour brown sugar and 1 teaspoon cinnamonU
+Bot: The 8-th step is:  while the pie is baking prepare the streusel topping: in a small bowl combine the flour brown sugar and 1 teaspoon cinnamon
 User: what is the substitute for sugar
 Bot: I found the following result for you: honey
 
@@ -103,7 +103,7 @@ Bot: ...
 Bot: This is the end of substitution.
 
 User: https://www.allrecipes.com/recipe/12504/brown-familys-favorite-pumpkin-pie/
-Bot: I have processed for you. What can I do now?
+Bot: I have processed brown family's favorite pumpkin pie recipe for you. What can I do now
 Bot: "What action do you want to perform: [1] Go over ingredients list or [2] Go over recipe steps."
 User: 1
 
