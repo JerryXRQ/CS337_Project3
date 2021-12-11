@@ -36,4 +36,4 @@ Example: How long does that take
 Anything containing "substitute", "replace" or "alter".
 Example: "What are available substitutions".
 
-The information provided in this section is only for reference. If there are discrepancies between the code's behaviors and the descriptions provided here, please look for better input samples in the user story.
+The information provided in this section is only for reference. If there are discrepancies between the code's behaviors and the descriptions provided here, please look for better input samples in the user story. The flow chart can also be used to better understand the behavior of the code.
